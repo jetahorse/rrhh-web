@@ -17,64 +17,53 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
-import utn.frsf.ofa.cursojava.rrhh.web.modelo.Cliente;
-import utn.frsf.ofa.cursojava.rrhh.web.service.ClienteService;
+import utn.frsf.ofa.cursojava.rrhh.web.modelo.Empleado;
+
+import utn.frsf.ofa.cursojava.rrhh.web.service.EmpleadoService;
 
 /**
  *
  * @author federicoaugustotschopp
  */
 @Stateless
-@Path("/cliente")
-public class ClienteResource {
+@Path("/empleado")
+public class EmpleadoResource {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    @Inject private ClienteService clienteService;
-    /*@GET
-    public Response listarClientes(){
-        return Response.ok("GET").build();
-        
-    }*/
+    @Inject private EmpleadoService empleadoService;
     
-    /*@POST
-    public Response crearCliente(Cliente cli){
-        System.out.println("CLIENTE RECIBIDO : "+cli);
-        return Response.ok("POST"+cli.getNombre()).build();
-        
-    }*/
     @GET
     public Response listarClientes(@QueryParam("nombre") String nombre){
-            List<Cliente> lista = new ArrayList<>();
+            List<Empleado> lista = new ArrayList<>();
             if(nombre!=null && nombre.trim().length()>0){
-                lista = clienteService.porNombre(nombre);
+                lista = empleadoService.porNombre(nombre);
             }
             else {
-                lista = clienteService.todos();
+                lista = empleadoService.todos();
             }
             return Response.ok(lista).build();
     }
     
     @GET
     @Path("{id}")
-    public Response buscarPorId(@PathParam("id") Integer idCliente){
-        return Response.ok(clienteService.porId(idCliente)).build();
+    public Response buscarPorId(@PathParam("id") Integer idEmpleado){
+        return Response.ok(empleadoService.porId(idEmpleado)).build();
     }
     @POST
-    public Response crearCliente(Cliente cli){
-        clienteService.guardar(cli);
+    public Response crearCliente(Empleado emp){
+        empleadoService.guardar(emp);
         return Response.ok().build();
     }
     @PUT
-    public Response actualizarCliente(Cliente cli){
-        clienteService.guardar(cli);
-        return Response.ok("PUT"+cli.getNombre()).build();
+    public Response actualizarCliente(Empleado emp){
+        empleadoService.guardar(emp);
+        return Response.ok("PUT"+emp.getNombre()).build();
     }
     @DELETE
     @Path("{id}")
-    public Response borrarCliente(@PathParam("id") Integer idCliente){
-        clienteService.borrar(idCliente);
+    public Response borrarCliente(@PathParam("id") Integer idEmpleado){
+        empleadoService.borrar(idEmpleado);
         return Response.ok("DELETE ok").build();
     }
-
 }

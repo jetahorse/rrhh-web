@@ -33,4 +33,16 @@ public class ClienteService {
     public List<Cliente> todos(){
         return this.em.createQuery("SELECT c FROM Cliente c").getResultList();
     }
+    
+    public Cliente porId(Integer id){
+        return this.em.find(Cliente.class,id);
+    }
+    public void borrar(Integer id){ 
+        this.em.remove(this.em.find(Cliente.class,id));
+    }
+    public List<Cliente> porNombre(String nombre){ 
+        return this.em.createQuery("SELECT c FROM Cliente c WHERE c.nombre like :P_NOMBRE")
+                .setParameter("P_NOMBRE", nombre)
+                .getResultList();
+    }
 }
