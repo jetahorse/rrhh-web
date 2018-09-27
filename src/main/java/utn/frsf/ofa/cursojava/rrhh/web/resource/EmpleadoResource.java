@@ -34,7 +34,7 @@ public class EmpleadoResource {
     @Inject private EmpleadoService empleadoService;
     
     @GET
-    public Response listarClientes(@QueryParam("nombre") String nombre){
+    public Response listarEmpleados(@QueryParam("nombre") String nombre){
             List<Empleado> lista = new ArrayList<>();
             if(nombre!=null && nombre.trim().length()>0){
                 lista = empleadoService.porNombre(nombre);
@@ -51,18 +51,18 @@ public class EmpleadoResource {
         return Response.ok(empleadoService.porId(idEmpleado)).build();
     }
     @POST
-    public Response crearCliente(Empleado emp){
+    public Response crearEmpleado(Empleado emp){
         empleadoService.guardar(emp);
         return Response.ok().build();
     }
     @PUT
-    public Response actualizarCliente(Empleado emp){
+    public Response actualizarEmpleado(Empleado emp){
         empleadoService.guardar(emp);
         return Response.ok("PUT"+emp.getNombre()).build();
     }
     @DELETE
     @Path("{id}")
-    public Response borrarCliente(@PathParam("id") Integer idEmpleado){
+    public Response borrarEmpleado(@PathParam("id") Integer idEmpleado){
         empleadoService.borrar(idEmpleado);
         return Response.ok("DELETE ok").build();
     }
