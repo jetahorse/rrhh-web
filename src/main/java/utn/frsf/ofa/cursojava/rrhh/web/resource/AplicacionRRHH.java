@@ -22,6 +22,7 @@ public class AplicacionRRHH extends Application{
     public Set<Class<?>> getClasses() {
         final Set<Class<?>> classes=new HashSet<>();
         classes.add(ClienteResource.class);
+        classes.add(EmpleadoResource.class);
         return classes;
     }
     
