@@ -66,4 +66,5 @@ public class EmpleadoResource {
         empleadoService.borrar(idEmpleado);
         return Response.ok("DELETE ok").build();
     }
+    
 }
