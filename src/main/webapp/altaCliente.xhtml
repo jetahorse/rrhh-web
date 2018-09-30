@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./template1.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+    
+    <ui:define name="top">
+        top
+    </ui:define>
+
+    <ui:define name="content">
+        content
+        <h:form id="frmAltaCliente">
+            <p:messages id="messages" showDetail="true" closable="true">
+                <p:autoUpdate />
+            </p:messages>
+            <h:messages id="msg2" showDetail="true" showSummary="true"></h:messages>
+            <h1> Alta de Clientes</h1>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="txtNombreCliente" value="Nombre:"></h:outputLabel>
+                <p:inputText id="txtNombreCliente" value="#{clienteController.cliente.nombre}" disabled="#{empty clienteController.cliente}"></p:inputText>
+                <h:outputLabel for="txtNombreCliente" value="CUIT"></h:outputLabel>
+                <p:inputMask id="txtCuit" value="#{clienteController.cliente.cuit}" mask="99- 99999999-9" disabled="#{empty clienteController.cliente}"></p:inputMask>
+                <h:outputLabel for="txtNombreCliente" value="Correo"></h:outputLabel>
+                <p:inputText id="txtCorreo" value="#{clienteController.cliente.correo}" disabled="#{empty clienteController.cliente}"></p:inputText>
+            </h:panelGrid>
+            <p:commandButton value="Guardar" action="#{clienteController.guardar}" disabled="#{empty clienteController.cliente}" update="frmAltaCliente"></p:commandButton>
+            <p:commandButton value="Nuevo" action="#{clienteController.nuevo}" disabled="#{not empty clienteController.cliente}" update="frmAltaCliente"></p:commandButton>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

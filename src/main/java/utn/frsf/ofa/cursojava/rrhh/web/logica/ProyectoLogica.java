@@ -20,6 +20,4 @@ public interface ProyectoLogica {
     public boolean cupoDisponible(Proyecto p);
     public boolean tieneEmpleadoEfectivo(Proyecto p);
     public boolean presupuestoDisponible(Proyecto p,Empleado e);
-
-    
 }
